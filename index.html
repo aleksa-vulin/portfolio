@@ -154,6 +154,23 @@
         .footer-socials a:hover { opacity: 1; color: var(--red); }
 
         @media (max-width: 1000px) { .strategy-grid { grid-template-columns: 1fr; } .nav-center { display: none; } nav { padding: 10px 20px; } }
+        /* Podešavanje za Reels sekciju na mobilnom */
+@media (max-width: 600px) {
+    /* Forsiramo da u [02] sekciji boksovi ne budu preširoki */
+    .grid-short {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centriramo videe na sredinu ekrana */
+        gap: 20px;
+    }
+
+    .grid-short .video-box {
+        width: 70%; /* Smanjujemo širinu da bi se videla cela visina na ekranu */
+        max-width: 280px; /* Ograničavamo maksimalnu širinu za krupnije telefone */
+        aspect-ratio: 9/16; /* Zadržavamo tvoju Reels razmeru */
+        margin: 0 auto;
+    }
+}
     </style>
 </head>
 <body>
