@@ -15,6 +15,7 @@
             --grey: #888888;
         }
 
+        /* Osnovni kursor je plusić */
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
         
         body {
@@ -25,7 +26,6 @@
             transition: background-color 1.5s ease;
         }
 
-        /* SUPLTILNIJE CRVENILO NA DNU */
         body.end-reached { background-color: #1a0202 !important; }
 
         #noise-canvas {
@@ -61,19 +61,42 @@
             font-family: 'VT323', monospace;
         }
 
-        .nav-left { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        /* Zamenjena mesta: Krug pa Logo */
+        .nav-left { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            text-decoration: none;
+            cursor: pointer; /* Prstić na ceo levi deo */
+        }
 
         .logo-img {
             height: 45px;
             width: auto;
             filter: invert(1);
             mix-blend-mode: screen;
+            cursor: pointer; /* Prstić na logo */
         }
 
-        .rec-dot { width: 12px; height: 12px; background: var(--red); border-radius: 50%; animation: pulse 1.5s infinite; }
+        .rec-dot { 
+            width: 12px; 
+            height: 12px; 
+            background: var(--red); 
+            border-radius: 50%; 
+            animation: pulse 1.5s infinite; 
+        }
+
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
 
-        .nav-center a { color: var(--text); text-decoration: none; margin: 0 15px; font-size: 20px; transition: 0.3s; opacity: 0.5; }
+        .nav-center a { 
+            color: var(--text); 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-size: 20px; 
+            transition: 0.3s; 
+            opacity: 0.5;
+            cursor: pointer; /* Prstić na linkove u meniju */
+        }
         .nav-center a:hover { opacity: 1; color: var(--red); }
         #timer { color: var(--red); font-size: 20px; min-width: 110px; }
 
@@ -89,7 +112,19 @@
         .name-tag { font-family: 'VT323', monospace; font-size: 22px; color: var(--red); margin-bottom: 10px; }
         .hero p { max-width: 600px; opacity: 0.9; font-size: 18px; margin-bottom: 30px; line-height: 1.5; color: white; }
 
-        .btn-main { padding: 10px 30px; border: 1px solid var(--red); background: transparent; color: var(--red); font-family: 'VT323', monospace; font-size: 22px; transition: 0.4s; text-transform: uppercase; text-decoration: none; display: inline-block; cursor: pointer; }
+        .btn-main { 
+            padding: 10px 30px; 
+            border: 1px solid var(--red); 
+            background: transparent; 
+            color: var(--red); 
+            font-family: 'VT323', monospace; 
+            font-size: 22px; 
+            transition: 0.4s; 
+            text-transform: uppercase; 
+            text-decoration: none; 
+            display: inline-block; 
+            cursor: pointer; /* Prstić na dugme */
+        }
         .btn-main:hover { background: var(--red); color: white; box-shadow: 0 0 20px var(--red); }
 
         .section { padding: 100px 10%; border-bottom: 1px solid var(--dark-red); }
@@ -115,7 +150,7 @@
         footer { text-align: center; padding: 150px 10%; }
         .cta-text { font-size: 40px; color: white; font-family: 'VT323'; margin-bottom: 15px; }
         .footer-socials { display: flex; justify-content: center; gap: 30px; margin-top: 30px; }
-        .footer-socials a { color: white; text-decoration: none; font-family: 'VT323', monospace; font-size: 20px; opacity: 0.6; transition: 0.3s; }
+        .footer-socials a { color: white; text-decoration: none; font-family: 'VT323', monospace; font-size: 20px; opacity: 0.6; transition: 0.3s; cursor: pointer; }
         .footer-socials a:hover { opacity: 1; color: var(--red); }
 
         @media (max-width: 1000px) { .strategy-grid { grid-template-columns: 1fr; } .nav-center { display: none; } nav { padding: 10px 20px; } }
@@ -128,8 +163,10 @@
 
     <nav>
         <a href="#" class="nav-left" onclick="window.location.reload()">
-            <img src="./image_1b45de.png" alt="" class="logo-img">
+            <!-- Prvo ide krug -->
             <div class="rec-dot"></div>
+            <!-- Zatim ide ovca -->
+            <img src="./image_1b45de.png" alt="" class="logo-img">
         </a>
         <div class="nav-center">
             <a href="#work">WORK</a>
@@ -169,7 +206,7 @@
         <div class="sec-title">[03] THE STRATEGY</div>
         <div class="strategy-grid">
             <div class="strategy-left">
-                <p>My name is <strong>Aleksa Vulin</strong>. I'm a video editor that doesn't just cut clips — I study <strong>why people stop watching</strong>. I know what grabs attention in the first seconds and what kills it[cite: 1].</p>
+                <p>My name is <strong>Aleksa Vulin</strong>. I'm a video editor that doesn't just cut clips — I study <strong>why people stop watching</strong>[cite: 1]. I know what grabs attention in the first seconds and what kills it[cite: 1].</p>
                 <p>By implementing dynamic animations and high-level sound design, I help elevate your content — no matter what you create[cite: 1]. From simple edits tailored to your niche, to <strong>complex, high-impact productions</strong>. Whatever your audience needs, I do[cite: 1].</p>
                 <p><strong>Follow The Herd</strong> is a community I'm building for editors who think differently and create boldly[cite: 1]. Same mission, same standards. <strong>Are you in?</strong>[cite: 1]</p>
                 <div class="stack-container">
