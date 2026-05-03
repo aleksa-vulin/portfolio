@@ -154,24 +154,29 @@
         .footer-socials a:hover { opacity: 1; color: var(--red); }
 
         @media (max-width: 1000px) { .strategy-grid { grid-template-columns: 1fr; } .nav-center { display: none; } nav { padding: 10px 20px; } }
+@media (max-width: 1000px) { 
+            .strategy-grid { grid-template-columns: 1fr; } 
+            .nav-center { display: none; } 
+            nav { padding: 10px 20px; } 
+        }
+
         @media (max-width: 600px) {
+            /* Osiguravamo da je grid vidljiv i da ređa elemente jedan ispod drugog */
             .grid-short {
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important; 
-                gap: 20px !important;
-                padding: 0 !important;
+                display: grid !important;
+                grid-template-columns: 1fr !important; /* Jedna kolona na telefonu */
+                gap: 30px !important;
+                justify-items: center !important;
             }
 
             .grid-short .video-box {
-                width: 75% !important; 
-                max-width: 280px !important; 
+                width: 250px !important; /* Fiksna širina za Reels na telefonu */
                 aspect-ratio: 9/16 !important; 
-                margin: 0 auto 20px auto !important;
+                background: #0a0a0a !important;
+                border: 1px solid #1a1a1a !important;
                 display: block !important;
             }
-        
-}
+        }
     </style>
 </head>
 <body>
