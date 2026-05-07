@@ -177,6 +177,32 @@
                 display: block !important;
             }
         }
+            /* POPUP DIZAJN */
+.copy-popup {
+    position: fixed;
+    bottom: 30px; /* Možeš staviti i više ako želiš da bude na sredini */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8); /* Tamna pozadina */
+    backdrop-filter: blur(8px); /* Efekat zamućenja */
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copy-popup.show {
+    opacity: 1;
+    bottom: 40px; /* Blagi skok na gore kada se pojavi */
+}
+        
     </style>
 </head>
 <body>
@@ -277,7 +303,7 @@
         <div class="footer-socials">
             <!-- Email link u footeru takodje automatski popunjava poruku -->
             <a href="mailto:vulin.work@gmail.com?subject=Video%20Editing%20Inquiry&body=Hello%20Aleksa,%0D%0A%0D%0AI%20checked%20out%20your%20portfolio%20and%20I%E2%80%99m%20interested%20in%20your%20work.%20I%20saw%20that%20you%20offer%20a%20free%20trial%20%E2%80%94%20could%20you%20tell%20me%20how%20to%20get%20started?%0D%0AI%E2%80%99d%20like%20to%20test%20a%20sample%20for%20my%20project.%0D%0A%0D%0ABest%20regards,">EMAIL</a>
-           <a href="#" onclick="copyText('vulinnn.', 'Discord username'); return false;" class="social-link">DISCORD</a>
+           <a href="#" onclick="copyText('vulinnn.'); return false;" class="social-link">DISCORD</a>
             <a href="https://www.instagram.com/vulinnn/" target="_blank">INSTAGRAM</a>
             <a href="https://x.com/vulinnn_" target="_blank">TWITTER</a>
             
@@ -327,13 +353,21 @@
         }, 40);
     </script>
     <script>
-function copyText(text, label) {
+function copyText(text) {
     navigator.clipboard.writeText(text).then(() => {
-        alert(label + " copied: " + text + ". Paste it to find me!");
+        const notification = document.getElementById('copy-notification');
+        notification.innerText = "COPIED: " + text;
+        notification.classList.add('show');
+        
+        // Popup nestaje nakon 2 sekunde
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 2000);
     }).catch(err => {
-        alert(label + ": " + text);
+        console.error("Failed to copy: ", err);
     });
 }
 </script>
 </body>
+    <div id="copy-notification" class="copy-popup">Copied to clipboard</div>
 </html>
