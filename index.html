@@ -268,24 +268,16 @@
     </div>
 
     <footer id="contact" class="reveal">
-        <div class="cta-text">READY TO FINALLY BE NOTICED?</div>
-        <p style="opacity: 0.6; margin-bottom: 30px;">Let’s transform your content with zero upfront cost.</p>
-        
-        <!-- CONTACT ME dugme sa predefinisanim mejlom -->
-        <a href="mailto:vulin.work@gmail.com?subject=Video%20Editing%20Inquiry&body=Hello%20Aleksa,%0D%0A%0D%0AI%20checked%20out%20your%20portfolio%20and%20I%E2%80%99m%20interested%20in%20your%20work.%20I%20saw%20that%20you%20offer%20a%20free%20trial%20%E2%80%94%20could%20you%20tell%20me%20how%20to%20get%20started?%0D%0AI%E2%80%99d%20like%20to%20test%20a%20sample%20for%20my%20project.%0D%0A%0D%0ABest%20regards," class="btn-main">CONTACT ME</a>
-
-        <div class="footer-socials">
-            <!-- Email link u footeru takodje automatski popunjava poruku -->
-            <a href="mailto:vulin.work@gmail.com?subject=Video%20Editing%20Inquiry&body=Hello%20Aleksa,%0D%0A%0D%0AI%20checked%20out%20your%20portfolio%20and%20I%E2%80%99m%20interested%20in%20your%20work.%20I%20saw%20that%20you%20offer%20a%20free%20trial%20%E2%80%94%20could%20you%20tell%20me%20how%20to%20get%20started?%0D%0AI%E2%80%99d%20like%20to%20test%20a%20sample%20for%20my%20project.%0D%0A%0D%0ABest%20regards,">EMAIL</a>
-            <a href="https://discord.com/users/900365965458546759" target="_blank">DISCORD</a>
-            <a href="https://www.instagram.com/vulinnn/" target="_blank">INSTAGRAM</a>
-            <a href="https://x.com/vulinnn_" target="_blank">TWITTER</a>
-            
-            <!-- LinkedIn alert poruka -->
-            <a href="javascript:void(0)" onclick="alert('Currently unavailable. Please use other forms for inquiries.')">LINKEDIN</a>
-        </div>
-        <p style="opacity: 0.2; font-size: 11px; margin-top: 60px;">© 2026 FOLLOW THE HERD // ALEKSA VULIN</p>
-    </footer>
+        <script>
+function copyDiscord() {
+    const username = "vulinnn"; 
+    navigator.clipboard.writeText(username).then(() => {
+        alert("Discord username copied: " + username + ". Paste it in Discord to add me!");
+    }).catch(err => {
+        alert("Add me on Discord: " + username);
+    });
+}
+</script>
 
     <script>
         const canvas = document.getElementById('noise-canvas');
@@ -325,6 +317,15 @@
             const ms = Math.floor((d%1000)/10).toString().padStart(2,'0');
             document.getElementById('timer').innerText = `${h}:${m}:${s}:${ms}`;
         }, 40);
+        function copyDiscord() {
+    const username = "vulinnn"; 
+    navigator.clipboard.writeText(username).then(() => {
+        alert("Discord username copied: " + username + ". Paste it in Discord to add me!");
+    }).catch(err => {
+        alert("Add me on Discord: " + username);
+    });
+}
     </script>
+
 </body>
 </html>
