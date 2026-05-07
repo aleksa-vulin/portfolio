@@ -277,7 +277,7 @@
         <div class="footer-socials">
             <!-- Email link u footeru takodje automatski popunjava poruku -->
             <a href="mailto:vulin.work@gmail.com?subject=Video%20Editing%20Inquiry&body=Hello%20Aleksa,%0D%0A%0D%0AI%20checked%20out%20your%20portfolio%20and%20I%E2%80%99m%20interested%20in%20your%20work.%20I%20saw%20that%20you%20offer%20a%20free%20trial%20%E2%80%94%20could%20you%20tell%20me%20how%20to%20get%20started?%0D%0AI%E2%80%99d%20like%20to%20test%20a%20sample%20for%20my%20project.%0D%0A%0D%0ABest%20regards,">EMAIL</a>
-            <a href="https://discord.com/users/900365965458546759" target="_blank">DISCORD</a>
+           <a href="#" onclick="copyText('vulinnn.', 'Discord username'); return false;" class="social-link">DISCORD</a>
             <a href="https://www.instagram.com/vulinnn/" target="_blank">INSTAGRAM</a>
             <a href="https://x.com/vulinnn_" target="_blank">TWITTER</a>
             
@@ -326,5 +326,14 @@
             document.getElementById('timer').innerText = `${h}:${m}:${s}:${ms}`;
         }, 40);
     </script>
+    <script>
+function copyText(text, label) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert(label + " copied: " + text + ". Paste it to find me!");
+    }).catch(err => {
+        alert(label + ": " + text);
+    });
+}
+</script>
 </body>
 </html>
