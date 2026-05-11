@@ -27,6 +27,7 @@
 
         html { scroll-behavior: smooth; }
 
+        /* Efekat crvenila na dnu */
         body.end-reached { background-color: #1a0202 !important; }
 
         #noise-canvas {
@@ -212,6 +213,7 @@
                 <div class="stack-container">
                     <div class="stack-tag">Premiere Pro</div><div class="stack-tag">After Effects</div><div class="stack-tag">CapCut</div>
                     <div class="stack-tag">DaVinci</div><div class="stack-tag">Photoshop</div><div class="stack-tag">Sound Design</div>
+                    <div class="stack-tag">Color Grading</div><div class="stack-tag">Script Polishing</div>
                 </div>
                 <div class="trial-box">
                     <p><strong>// FREE TRIAL:</strong> Spare 15 seconds and send me your footage. I'll show you what I can do with <strong>no commitment</strong>.</p>
@@ -258,7 +260,13 @@
         const reveals = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Aktivacija crvenila na body-ju kada se vidi contact sekcija
+                    if (entry.target.id === 'contact') document.body.classList.add('end-reached');
+                } else {
+                    if (entry.target.id === 'contact') document.body.classList.remove('end-reached');
+                }
             });
         }, { threshold: 0.1 });
         reveals.forEach(r => observer.observe(r));
