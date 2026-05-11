@@ -27,7 +27,6 @@
 
         html { scroll-behavior: smooth; }
 
-        /* Efekat crvenila na dnu */
         body.end-reached { background-color: #1a0202 !important; }
 
         #noise-canvas {
@@ -258,18 +257,31 @@
         noise();
 
         const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
+        
+        // Poseban posmatrač za boju (aktivira se tek na 60% vidljivosti contact sekcije)
+        const colorObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.id === 'contact') {
+                    document.body.classList.add('end-reached');
+                } else if (entry.target.id === 'contact') {
+                    document.body.classList.remove('end-reached');
+                }
+            });
+        }, { threshold: 0.6 });
+
+        // Posmatrač za animacije pojavljivanja (reveal)
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    // Aktivacija crvenila na body-ju kada se vidi contact sekcija
-                    if (entry.target.id === 'contact') document.body.classList.add('end-reached');
-                } else {
-                    if (entry.target.id === 'contact') document.body.classList.remove('end-reached');
                 }
             });
         }, { threshold: 0.1 });
-        reveals.forEach(r => observer.observe(r));
+
+        reveals.forEach(r => {
+            revealObserver.observe(r);
+            if (r.id === 'contact') colorObserver.observe(r);
+        });
 
         const start = Date.now();
         setInterval(() => {
