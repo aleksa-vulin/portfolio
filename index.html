@@ -84,4 +84,235 @@
         .hero p { max-width: 600px; opacity: 0.9; font-size: 18px; margin-bottom: 30px; line-height: 1.5; color: white; }
 
         .btn-main { padding: 10px 30px; border: 1px solid var(--red); background: transparent; color: var(--red); font-family: 'VT323', monospace; font-size: 22px; transition: 0.4s; text-transform: uppercase; text-decoration: none; display: inline-block; }
-        .btn-main:hover {
+        .btn-main:hover { background: var(--red); color: white; box-shadow: 0 0 20px var(--red); }
+
+        .section { padding: 100px 10%; border-bottom: 1px solid var(--dark-red); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .sec-title { font-family: 'VT323', monospace; font-size: 28px; color: var(--red); margin-bottom: 40px; display: flex; align-items: center; gap: 15px; }
+        .sec-title::after { content: ""; height: 1px; flex: 1; background: var(--dark-red); }
+
+        .video-grid { display: grid; gap: 15px; }
+        .grid-long { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .grid-short { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+        
+        .video-box { 
+            background: #0a0a0a; 
+            border: 1px solid #1a1a1a; 
+            aspect-ratio: 16/9; 
+            overflow: hidden; 
+            position: relative;
+        }
+        .grid-short .video-box { aspect-ratio: 9/16; }
+
+        .video-box video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .request-box {
+            width: 100%;
+            padding: 50px 20px;
+            border: 1px dashed #1a1a1a;
+            background: #060606;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'VT323', monospace;
+            font-size: clamp(24px, 5vw, 45px);
+            color: var(--red);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .strategy-grid { display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 50px; }
+        .strategy-left p { margin-bottom: 25px; line-height: 1.8; font-size: 17px; color: #ccc; }
+        .stack-container { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0; }
+        .stack-tag { padding: 5px 14px; border: 1px solid #333; color: var(--grey); font-size: 13px; text-transform: uppercase; }
+        .trial-box { padding: 20px; border: 1px dashed var(--red); background: rgba(207, 0, 0, 0.03); }
+        .profile-img-area { width: 100%; aspect-ratio: 3/4; border: 1px solid var(--dark-red); background: #0d0d0d; }
+
+        footer { text-align: center; padding: 150px 10%; }
+        .cta-text { font-size: 40px; color: white; font-family: 'VT323'; margin-bottom: 15px; }
+        .footer-socials { display: flex; justify-content: center; gap: 30px; margin-top: 30px; }
+        .footer-socials a { color: white; text-decoration: none; font-family: 'VT323', monospace; font-size: 20px; opacity: 0.6; transition: 0.3s; }
+        .footer-socials a:hover { opacity: 1; color: var(--red); }
+
+        .copy-popup {
+            position: fixed;
+            bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px);
+            color: #fff; padding: 12px 24px; border-radius: 4px;
+            font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+            z-index: 10001; opacity: 0; transition: all 0.3s ease;
+            pointer-events: none; border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .copy-popup.show { opacity: 1; bottom: 40px; }
+
+        @media (max-width: 1000px) { .strategy-grid { grid-template-columns: 1fr; } .nav-center { display: none; } nav { padding: 10px 20px; } }
+        @media (max-width: 600px) {
+            .grid-short { display: grid !important; grid-template-columns: 1fr !important; gap: 30px !important; justify-items: center !important; }
+            .grid-short .video-box { width: 250px !important; aspect-ratio: 9/16 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="noise-canvas"></canvas>
+    <div class="vhs-overlay"></div>
+
+    <nav>
+        <a href="#" class="nav-left" onclick="window.location.reload()">
+            <div class="rec-dot"></div>
+            <img src="./image_1b45de.png" alt="" class="logo-img">
+        </a>
+        <div class="nav-center">
+            <a href="#work">WORK</a>
+            <a href="#mission">MISSION</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+        <div id="timer">00:00:00:00</div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-video-container">
+            <video autoplay muted loop playsinline><source src="Nontage.webm" type="video/webm"></video>
+        </div>
+        <div class="hero-content reveal">
+            <div class="name-tag">// ALEKSA VULIN // VIDEO EDITOR // PORTFOLIO</div>
+            <h1>TRANSFORMING FOOTAGE<br>INTO <span>UNSKIPPABLE</span> VIDEOS<span class="cursor"></span></h1>
+            <p>I engineer attention through psychological storytelling and high-retention editing techniques. </p>
+            <p>Be noticeable. </p>
+            <a href="#work" class="btn-main">VIEW PROJECTS</a>
+        </div>
+    </section>
+
+    <div id="work" class="section reveal">
+        <div style="text-align: center; padding: 60px 20px; color: #ffffff; opacity: 0.4; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; line-height: 1.8;">
+            The projects you are viewing have a site-specific overlay.<br>
+            Original videos are only available on request.
+        </div>
+        <div class="sec-title">[01] TIKTOK / REELS</div>
+        <div class="video-grid grid-short">
+            <div class="video-box">
+                <video controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;" playsinline>
+                    <source src="portfolio2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-box"></div>
+            <div class="video-box"></div>
+            <div class="video-box"></div>
+            <div class="video-box"></div>
+        </div>
+    </div>
+
+    <div class="section reveal">
+        <div class="sec-title">[02] LONG FORM</div>
+        <div class="request-box">
+            // AVAILABLE ON REQUEST //
+        </div>
+    </div>
+
+    <div class="section reveal" id="mission">
+        <div class="sec-title">[03] THE STRATEGY</div>
+        <div class="strategy-grid">
+            <div class="strategy-left">
+                <p>My name is <strong>Aleksa Vulin</strong>. I'm a video editor that doesn't just cut clips — I study <strong>why people stop watching</strong>. I know what grabs attention in the first seconds and what kills it.</p>
+                <p>By implementing dynamic animations and high-level sound design, I help elevate your content. From simple edits tailored to your niche, to <strong>complex, high-impact productions</strong>.</p>
+                <p><strong>Follow The Herd</strong> is a community I'm building for editors who think differently. <strong>Are you in?</strong></p>
+                <div class="stack-container">
+                    <div class="stack-tag">Premiere Pro</div><div class="stack-tag">After Effects</div><div class="stack-tag">CapCut</div>
+                    <div class="stack-tag">DaVinci</div><div class="stack-tag">Photoshop</div><div class="stack-tag">Sound Design</div>
+                    <div class="stack-tag">Color Grading</div><div class="stack-tag">Script Polishing</div>
+                </div>
+                <div class="trial-box">
+                    <p><strong>// FREE TRIAL:</strong> Spare 15 seconds and send me your footage. I'll show you what I can do with <strong>no commitment</strong>.</p>
+                </div>
+            </div>
+            <div class="strategy-right">
+                <div class="profile-img-area"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact" class="reveal">
+        <div class="cta-text">READY TO FINALLY BE NOTICED?</div>
+        <p style="opacity: 0.6; margin-bottom: 30px;">Let’s transform your content with zero upfront cost.</p>
+        <a href="mailto:vulin.work@gmail.com?subject=Video%20Editing%20Inquiry" class="btn-main">CONTACT ME</a>
+        <div class="footer-socials">
+            <a href="mailto:vulin.work@gmail.com">EMAIL</a>
+            <a href="#" onclick="copyText('vulinnn.'); return false;">DISCORD</a>
+            <a href="https://www.instagram.com/vulinnn/" target="_blank">INSTAGRAM</a>
+            <a href="https://x.com/vulinnn_" target="_blank">TWITTER</a>
+        </div>
+        <p style="opacity: 0.2; font-size: 11px; margin-top: 60px;">© 2026 FOLLOW THE HERD // ALEKSA VULIN</p>
+    </footer>
+
+    <div id="copy-notification" class="copy-popup">Copied to clipboard</div>
+
+    <script>
+        // Noise Canvas
+        const canvas = document.getElementById('noise-canvas');
+        const ctx = canvas.getContext('2d');
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resize(); window.addEventListener('resize', resize);
+        function noise() {
+            const idata = ctx.createImageData(canvas.width, canvas.height);
+            const buffer32 = new Uint32Array(idata.data.buffer);
+            for (let i = 0; i < buffer32.length; i++) {
+                if (Math.random() < 0.08) buffer32[i] = 0xff000000 | (Math.random() * 255 << 16) | (Math.random() * 255 << 8) | Math.random() * 255;
+            }
+            ctx.putImageData(idata, 0, 0);
+            setTimeout(() => requestAnimationFrame(noise), 50);
+        }
+        noise();
+
+        const reveals = document.querySelectorAll('.reveal');
+        
+        // POSMATRAČ 1: Kontrola crvenila (aktivira se tek na 60% vidljivosti kontakta)
+        const colorObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.id === 'contact') {
+                    document.body.classList.add('end-reached');
+                } else if (entry.target.id === 'contact') {
+                    document.body.classList.remove('end-reached');
+                }
+            });
+        }, { threshold: 0.6 });
+
+        // POSMATRAČ 2: Animacije pojavljivanja (Vraćen stari, stabilan metod)
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        reveals.forEach(r => {
+            revealObserver.observe(r);
+            if (r.id === 'contact') colorObserver.observe(r);
+        });
+
+        // Tajmer
+        const start = Date.now();
+        setInterval(() => {
+            const d = Date.now() - start;
+            const h = Math.floor(d/3600000).toString().padStart(2,'0');
+            const m = Math.floor((d%3600000)/60000).toString().padStart(2,'0');
+            const s = Math.floor((d%60000)/1000).toString().padStart(2,'0');
+            const ms = Math.floor((d%1000)/10).toString().padStart(2,'0');
+            document.getElementById('timer').innerText = `${h}:${m}:${s}:${ms}`;
+        }, 40);
+
+        // Discord Copy
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const notification = document.getElementById('copy-notification');
+                notification.innerText = "COPIED: " + text;
+                notification.classList.add('show');
+                setTimeout(() => notification.classList.remove('show'), 2000);
+            });
+        }
+    </script>
+</body>
+</html>
