@@ -198,7 +198,11 @@
                     <source src="portfolio2.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="video-box"></div>
+            <div class="video-box">
+                <video controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;" playsinline>
+                    <source src="portfolio3.mp4" type="video/mp4">
+                </video>
+            </div>
             <div class="video-box"></div>
             <div class="video-box"></div>
             <div class="video-box"></div>
@@ -268,7 +272,7 @@
 
         const reveals = document.querySelectorAll('.reveal');
         
-        // POSMATRAČ 1: Kontrola crvenila (aktivira se tek na 60% vidljivosti kontakta)
+        // POSMATRAČ 1: Kontrola crvenila
         const colorObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.id === 'contact') {
@@ -279,7 +283,7 @@
             });
         }, { threshold: 0.6 });
 
-        // POSMATRAČ 2: Animacije pojavljivanja (Vraćen stari, stabilan metod)
+        // POSMATRAČ 2: Animacije pojavljivanja
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
