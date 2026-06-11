@@ -106,7 +106,8 @@
         }
         .grid-short .video-box { aspect-ratio: 9/16; }
 
-        .video-box video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        /* Osigurano da svaki video unutar boksa zauzima 100% prostora */
+        .video-box video { width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; }
 
         .request-box {
             width: 100%;
@@ -194,31 +195,31 @@
         </div>
         <div class="sec-title">[01] TIKTOK / REELS</div>
         <div class="video-grid grid-short">
-            <!-- Prvo mesto: portfolio2.mp4 -->
+            <!-- Prvo mesto -->
             <div class="video-box">
                 <video controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;" playsinline>
                     <source src="portfolio2.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Drugo mesto: portfolio3.mp4 -->
+            <!-- Drugo mesto -->
             <div class="video-box">
                 <video controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;" playsinline>
                     <source src="portfolio3.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Treće mesto: portfolio5.mp4 -->
+            <!-- Treće mesto -->
             <div class="video-box">
                 <video controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;" playsinline>
                     <source src="portfolio5.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Četvrto mesto: portfolio7.mp4 (SADA JE ISPRAVLJENO) -->
+            <!-- Četvrto mesto: portfolio7.mp4 (Sada sa ispravljenim CSS-om i plejerom) -->
             <div class="video-box">
                 <video controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;" playsinline>
                     <source src="portfolio7.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Preostalo 1 mesto je prazno -->
+            <!-- Peto mesto ostaje prazan boks kao rezerva -->
             <div class="video-box"></div>
         </div>
     </div>
