@@ -106,7 +106,6 @@
         }
         .grid-short .video-box { aspect-ratio: 9/16; }
 
-        /* Osigurano da svaki video unutar boksa zauzima 100% prostora */
         .video-box video { width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; }
 
         .request-box {
@@ -187,7 +186,6 @@
         </div>
     </section>
 
-    <!-- SEKCIJA 01: TIKTOK / REELS -->
     <div id="work" class="section reveal">
         <div style="text-align: center; padding: 60px 20px; color: #ffffff; opacity: 0.4; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; line-height: 1.8;">
             The projects you are viewing have a site-specific overlay.<br>
@@ -195,36 +193,34 @@
         </div>
         <div class="sec-title">[01] TIKTOK / REELS</div>
         <div class="video-grid grid-short">
-            <!-- Prvo mesto -->
             <div class="video-box">
                 <video controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;" playsinline>
                     <source src="portfolio2.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Drugo mesto -->
             <div class="video-box">
                 <video controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;" playsinline>
                     <source src="portfolio3.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Treće mesto -->
             <div class="video-box">
                 <video controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;" playsinline>
                     <source src="portfolio5.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Četvrto mesto: portfolio7.mp4 (Sada sa ispravljenim CSS-om i plejerom) -->
             <div class="video-box">
                 <video controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;" playsinline>
                     <source src="portfolio7.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Peto mesto ostaje prazan boks kao rezerva -->
-            <div class="video-box"></div>
+            <div class="video-box">
+                <video controls controlsList="nodownload noremoteplayback" oncontextmenu="return false;" playsinline>
+                    <source src="portfolio10.mp4" type="video/mp4">
+                </video>
+            </div>
         </div>
     </div>
 
-    <!-- SEKCIJA 02: LONG FORM -->
     <div class="section reveal">
         <div class="sec-title">[02] LONG FORM</div>
         <div class="request-box">
@@ -232,7 +228,6 @@
         </div>
     </div>
 
-    <!-- SEKCIJA 03: THE STRATEGY -->
     <div class="section reveal" id="mission">
         <div class="sec-title">[03] THE STRATEGY</div>
         <div class="strategy-grid">
@@ -255,7 +250,6 @@
         </div>
     </div>
 
-    <!-- SEKCIJA 04: CONTACT -->
     <footer id="contact" class="reveal">
         <div class="cta-text">READY TO FINALLY BE NOTICED?</div>
         <p style="opacity: 0.6; margin-bottom: 30px;">Let’s transform your content with zero upfront cost.</p>
@@ -263,8 +257,8 @@
         <div class="footer-socials">
             <a href="mailto:vulin.work@gmail.com">EMAIL</a>
             <a href="#" onclick="copyText('vulinnn.'); return false;">DISCORD</a>
-            <a href="https://www.instagram.com/vulinnn/" target="_blank">INSTAGRAM</a>
-            <a href="https://x.com/vulinnn_" target="_blank">TWITTER</a>
+            <a href="#" onclick="showSoonNotification(); return false;">INSTAGRAM</a>
+            <a href="#" onclick="showSoonNotification(); return false;">TWITTER</a>
         </div>
         <p style="opacity: 0.2; font-size: 11px; margin-top: 60px;">© 2026 FOLLOW THE HERD // ALEKSA VULIN</p>
     </footer>
@@ -334,6 +328,14 @@
                 notification.classList.add('show');
                 setTimeout(() => notification.classList.remove('show'), 2000);
             });
+        }
+
+        // Prikaz "Soon available" obaveštenja
+        function showSoonNotification() {
+            const notification = document.getElementById('copy-notification');
+            notification.innerText = "SOON AVAILABLE";
+            notification.classList.add('show');
+            setTimeout(() => notification.classList.remove('show'), 2000);
         }
     </script>
 </body>
