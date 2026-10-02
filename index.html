@@ -69,7 +69,7 @@
             height: 100vh;
             z-index: 9999;
             pointer-events: none;
-            opacity: 0.12;
+            opacity: 0.04;
         }
 
         .vhs-vignette {
@@ -160,12 +160,8 @@
         }
 
         @keyframes logoShimmer {
-            0% {
-                left: -150%;
-            }
-            100% {
-                left: 150%;
-            }
+            0% { left: -150%; }
+            100% { left: 150%; }
         }
 
         .nav-center-links {
@@ -299,13 +295,7 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        body.work-open .scroll-wrapper {
-            transform: scale(0.96);
-            filter: blur(8px) brightness(0.6);
-            pointer-events: none;
+            transition: opacity 0.4s ease;
         }
 
         .panel {
@@ -612,7 +602,6 @@
             letter-spacing: 2.5px;
             font-size: 22px;
             text-transform: uppercase;
-            
             background: linear-gradient(90deg, #ff2a2a 0%, #800a0a 50%, #ff2a2a 100%);
             background-size: 200% auto;
             color: transparent;
@@ -685,7 +674,6 @@
             font-size: 14px;
         }
 
-        /* --- DONJI RED: INFO + DUGME --- */
         .whyme-bottom-row {
             display: flex;
             justify-content: space-between; 
@@ -741,6 +729,7 @@
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
         }
 
         .btn-projects-trigger::before {
@@ -761,18 +750,6 @@
             transition: opacity 0.4s ease;
         }
 
-        .btn-projects-trigger::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 50%);
-            pointer-events: none;
-            z-index: 2;
-        }
-
         @keyframes slowGradientMove {
             0% { background-position: 100% 0%; }
             100% { background-position: -100% 0%; }
@@ -790,18 +767,6 @@
             color: #ffffff;
         }
 
-        .btn-projects-trigger:hover::before {
-            background: linear-gradient(120deg, 
-                transparent 10%, 
-                rgba(74, 0, 0, 0.25) 30%, 
-                rgba(74, 0, 0, 0.5) 50%, 
-                rgba(74, 0, 0, 0.25) 70%, 
-                transparent 90%
-            );
-            background-size: 300% 100%;
-            animation: slowGradientMove 3s linear infinite;
-        }
-
         .btn-projects-trigger .arrow-icon {
             font-size: 14px;
             color: rgba(230, 28, 28, 0.7);
@@ -813,161 +778,278 @@
             color: #ffffff;
         }
 
-        /* --- WORK OVERLAY --- */
-        #work-overlay {
+        /* --- COMPLETELY DEDICATED FULL-PAGE VIEW: PROJECTS & TESTIMONIALS --- */
+        #projects-standalone-page {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 20000;
-            background: rgba(4, 4, 6, 0.88);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            display: flex;
+            background: #040406;
+            z-index: 99999;
+            overflow-y: auto;
+            display: none;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 60px;
+            padding: 85px 30px 100px 30px;
             opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transform: scale(1.04);
-            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                        visibility 0.5s ease;
+            transition: opacity 0.35s ease;
         }
 
-        #work-overlay.active {
+        #projects-standalone-page.active {
+            display: flex;
             opacity: 1;
-            visibility: visible;
-            pointer-events: all;
-            transform: scale(1);
         }
 
-        .work-close-btn {
-            position: absolute;
-            top: 32px;
-            right: 45px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: rgba(230, 28, 28, 0.15);
+        /* FIXED FLOATING BACK BUTTON IN TOP RIGHT CORNER */
+        .btn-standalone-back-fixed {
+            position: fixed;
+            top: 90px;
+            right: 40px;
+            z-index: 100001;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(15, 15, 20, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(230, 28, 28, 0.4);
+            border: 1px solid rgba(230, 28, 28, 0.5);
+            border-radius: 12px;
+            padding: 11px 22px;
             color: #ffffff;
-            font-size: 20px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            text-decoration: none;
             cursor: pointer;
-            box-shadow: 0 10px 25px rgba(230, 28, 28, 0.2);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 20001;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
         }
 
-        .work-close-btn:hover {
-            transform: rotate(90deg) scale(1.08);
+        .btn-standalone-back-fixed:hover {
             background: rgba(230, 28, 28, 0.35);
-            border-color: rgba(230, 28, 28, 0.8);
+            border-color: rgba(230, 28, 28, 0.9);
             box-shadow: 0 0 25px rgba(230, 28, 28, 0.5);
+            transform: translateY(-2px);
         }
 
-        .work-modal-container {
+        .btn-standalone-back-fixed .back-icon {
+            font-size: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-standalone-back-fixed:hover .back-icon {
+            transform: translateX(-4px);
+        }
+
+        .projects-page-content {
             width: 100%;
-            max-width: 1280px;
+            max-width: 1100px;
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            align-items: center;
+            gap: 35px;
+            position: relative;
         }
 
-        .work-modal-header {
+        .projects-page-header {
+            text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
         }
 
-        .work-modal-title {
-            font-size: 32px;
+        /* VECI MAIN NASLOV */
+        .projects-main-title {
+            font-size: 38px;
             font-weight: 900;
-            letter-spacing: -1px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ff2a2a 0%, #800a0a 50%, #ff2a2a 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: redLinearGradient 6s linear infinite;
+            filter: drop-shadow(0 0 16px rgba(230, 28, 28, 0.55));
+        }
+
+        .projects-section-block {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .projects-section-title {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: #ffffff;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .work-modal-title span {
-            color: var(--red);
-            text-shadow: 0 0 20px var(--red-glow);
+        .projects-section-title::after,
+        .projects-section-title::before {
+            content: '';
+            display: block;
+            width: 35px;
+            height: 2px;
+            background: var(--red);
+            box-shadow: 0 0 10px var(--red);
         }
 
-        .work-modal-sub {
-            font-size: 14px;
-            color: var(--text-sub);
-            font-weight: 500;
-        }
-
-        .work-grid-single-row {
+        /* 3 REELS VIDEO HOLDERA (9:16) GRID */
+        .projects-video-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 22px;
             width: 100%;
+            max-width: 880px;
+            margin: 0 auto;
         }
 
-        .work-video-card {
-            background: rgba(12, 12, 18, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 16px;
+        .projects-video-card {
+            background: rgba(12, 12, 18, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            padding: 12px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            gap: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .work-video-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(230, 28, 28, 0.5);
-            box-shadow: 0 15px 35px rgba(230, 28, 28, 0.2);
-            background: rgba(18, 18, 26, 0.7);
+        .projects-video-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(230, 28, 28, 0.6);
+            box-shadow: 0 15px 35px rgba(230, 28, 28, 0.25);
+            background: rgba(18, 18, 26, 0.9);
         }
 
-        .work-video-placeholder {
+        /* 9:16 ASPECT RATIO FORM-FACTOR */
+        .projects-video-box-reels {
             width: 100%;
-            height: 380px;
-            background: #000;
+            aspect-ratio: 9 / 16;
+            background: #000000;
             border-radius: 12px;
+            overflow: hidden;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .work-video-placeholder span {
+        .projects-video-box-reels span {
             font-family: monospace;
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-sub);
             letter-spacing: 1px;
+            text-align: center;
+            padding: 8px;
         }
 
-        .work-card-info {
+        .projects-card-info {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 3px;
         }
 
-        .work-card-title {
-            font-size: 16px;
+        .projects-card-title {
+            font-size: 14px;
             font-weight: 800;
             color: #ffffff;
             text-transform: uppercase;
         }
 
-        .work-card-client {
-            font-size: 12px;
+        .projects-card-client {
+            font-size: 11px;
+            color: var(--text-sub);
+            font-weight: 600;
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card {
+            background: rgba(12, 12, 18, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 16px;
+            position: relative;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: rgba(230, 28, 28, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+
+        .testimonial-quote {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 14px;
+        }
+
+        .testimonial-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(230, 28, 28, 0.2);
+            border: 1px solid rgba(230, 28, 28, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            color: #ffffff;
+        }
+
+        .testimonial-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-name {
+            font-size: 14px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .testimonial-role {
+            font-size: 11px;
             color: var(--text-sub);
             font-weight: 600;
         }
@@ -1001,6 +1083,22 @@
             color: var(--text-sub);
             line-height: 1.6;
         }
+
+        @media (max-width: 768px) {
+            .btn-standalone-back-fixed {
+                top: 80px;
+                right: 20px;
+                padding: 8px 16px;
+                font-size: 11px;
+            }
+            .projects-main-title {
+                font-size: 26px;
+            }
+            .projects-video-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1021,23 +1119,23 @@
 
     <!-- NAVBAR -->
     <nav id="navbar">
-        <a href="#" class="nav-logo" onclick="goToSlide(0); return false;">
+        <a href="https://followtheherd.co" class="nav-logo">
             <img src="./Untitled-3.png" alt="Follow The Herd Logo">
         </a>
 
         <div class="nav-center-links">
-            <div class="nav-tab" id="nav-tab-1" onclick="goToSlide(1)">
+            <a href="#whyme" class="nav-tab" id="nav-tab-1">
                 <canvas class="nav-tab-canvas"></canvas>
                 <span>Why Me?</span>
-            </div>
-            <div class="nav-tab" id="nav-tab-2" onclick="goToSlide(2)">
+            </a>
+            <a href="#mission" class="nav-tab" id="nav-tab-2">
                 <canvas class="nav-tab-canvas"></canvas>
                 <span>Mission</span>
-            </div>
-            <div class="nav-tab" id="nav-tab-3" onclick="goToSlide(3)">
+            </a>
+            <a href="#contact" class="nav-tab" id="nav-tab-3">
                 <canvas class="nav-tab-canvas"></canvas>
                 <span>Contact</span>
-            </div>
+            </a>
         </div>
 
         <div class="nav-right">
@@ -1051,52 +1149,8 @@
         FollowTheHerd™ 2026. ALL RIGHTS RESERVED.
     </footer>
 
-    <!-- FULLSCREEN WORK OVERLAY -->
-    <div id="work-overlay">
-        <button class="work-close-btn" onclick="closeWorkOverlay()" title="Close (ESC)">✕</button>
-
-        <div class="work-modal-container">
-            <div class="work-modal-header">
-                <h2 class="work-modal-title">SELECTED <span>PROJECTS</span> & RESULTS</h2>
-                <p class="work-modal-sub">// High-retention edits crafted for maximum audience engagement.</p>
-            </div>
-
-            <div class="work-grid-single-row">
-                <div class="work-video-card">
-                    <div class="work-video-placeholder">
-                        <span>// VIDEO 01</span>
-                    </div>
-                    <div class="work-card-info">
-                        <span class="work-card-title">PROJECT ALPHA</span>
-                        <span class="work-card-client">Client: Brand / Creator Name</span>
-                    </div>
-                </div>
-
-                <div class="work-video-card">
-                    <div class="work-video-placeholder">
-                        <span>// VIDEO 02</span>
-                    </div>
-                    <div class="work-card-info">
-                        <span class="work-card-title">PROJECT BETA</span>
-                        <span class="work-card-client">Client: Agency Case Study</span>
-                    </div>
-                </div>
-
-                <div class="work-video-card">
-                    <div class="work-video-placeholder">
-                        <span>// VIDEO 03</span>
-                    </div>
-                    <div class="work-card-info">
-                        <span class="work-card-title">PROJECT GAMMA</span>
-                        <span class="work-card-client">Client: Short Form Viral Edit</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- FULLSCREEN SLIDING PANELS -->
-    <div class="scroll-wrapper">
+    <div class="scroll-wrapper" id="main-scroll-wrapper">
         
         <!-- PANEL 0: HERO -->
         <section class="panel" id="hero-panel">
@@ -1109,29 +1163,29 @@
 
                 <!-- Bento Grid -->
                 <div class="bento-grid">
-                    <div class="bento-card card-whyme" onclick="goToSlide(1)">
+                    <a href="#whyme" class="bento-card card-whyme">
                         <div class="card-header">
                             <span class="card-title">Why Me?</span>
                             <span class="card-icon">↗</span>
                         </div>
                         <p class="card-subtitle">My breakdown, client results and projects.</p>
-                    </div>
+                    </a>
 
-                    <div class="bento-card card-mission" onclick="goToSlide(2)">
+                    <a href="#mission" class="bento-card card-mission">
                         <div class="card-header">
                             <span class="card-title">Mission</span>
                             <span class="card-icon">↗</span>
                         </div>
                         <p class="card-subtitle">Why your content fails.</p>
-                    </div>
+                    </a>
 
-                    <div class="bento-card card-contact" onclick="goToSlide(3)">
+                    <a href="#contact" class="bento-card card-contact">
                         <div class="card-header">
                             <span class="card-title">Contact</span>
                             <span class="card-icon">↗</span>
                         </div>
                         <p class="card-subtitle">Let's scale your brand.</p>
-                    </div>
+                    </a>
                 </div>
 
                 <!-- ALEKSA VULIN KARTICA -->
@@ -1168,10 +1222,11 @@
                             <span>For the best experience, please watch the video in full screen.</span>
                         </div>
 
-                        <button class="btn-projects-trigger" onclick="openWorkOverlay()">
+                        <!-- LINK OTVARA POTPUNO ZASEBNU STRANICU #projects&testimonials -->
+                        <a href="#projects&testimonials" class="btn-projects-trigger">
                             <span>Projects & Testimonials</span>
                             <span class="arrow-icon">↗</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1195,6 +1250,104 @@
             </div>
         </section>
 
+    </div>
+
+    <!-- POTPUNO ZASEBNA STRANICA: PROJECTS & TESTIMONIALS -->
+    <div id="projects-standalone-page">
+        
+        <!-- FIKSIRANO DUGME "BACK" U DESNOM COSKU KOJE PRATI SKROL -->
+        <a href="#whyme" class="btn-standalone-back-fixed">
+            <span class="back-icon">←</span>
+            <span>BACK TO WHY ME</span>
+        </a>
+
+        <div class="projects-page-content">
+            
+            <!-- SREDINA GORE: VECI NASLOV -->
+            <div class="projects-page-header">
+                <h1 class="projects-main-title">PROJECTS & TESTIMONIALS</h1>
+            </div>
+
+            <!-- PROJECTS SEKCIJA -->
+            <div class="projects-section-block">
+                <h2 class="projects-section-title">PROJECTS</h2>
+
+                <!-- 3 REELS (9:16) VIDEO HOLDERA -->
+                <div class="projects-video-grid">
+                    <div class="projects-video-card">
+                        <div class="projects-video-box-reels">
+                            <span>// REELS HOLDER 9:16</span>
+                        </div>
+                        <div class="projects-card-info">
+                            <span class="projects-card-title">PROJECT ALPHA</span>
+                            <span class="projects-card-client">Client: Brand / Creator Name</span>
+                        </div>
+                    </div>
+
+                    <div class="projects-video-card">
+                        <div class="projects-video-box-reels">
+                            <span>// REELS HOLDER 9:16</span>
+                        </div>
+                        <div class="projects-card-info">
+                            <span class="projects-card-title">PROJECT BETA</span>
+                            <span class="projects-card-client">Client: Agency Case Study</span>
+                        </div>
+                    </div>
+
+                    <div class="projects-video-card">
+                        <div class="projects-video-box-reels">
+                            <span>// REELS HOLDER 9:16</span>
+                        </div>
+                        <div class="projects-card-info">
+                            <span class="projects-card-title">PROJECT GAMMA</span>
+                            <span class="projects-card-client">Client: Short Form Viral Edit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TESTIMONIALS SEKCIJA (PO OTVALJANJU STRANICE DNO JE TAKO PODEŠENO DA SE OVAJ NASLOV SAMO NADZIRE NA DNU) -->
+            <div class="projects-section-block">
+                <h2 class="projects-section-title">TESTIMONIALS</h2>
+
+                <!-- 3 TESTIMONIAL KARTICE -->
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">"Follow The Herd completely transformed our short-form content. Engagement and retention went up 4x in less than 30 days."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">AR</div>
+                            <div class="testimonial-meta">
+                                <span class="testimonial-name">Alex Rivera</span>
+                                <span class="testimonial-role">Founder @ TechFlow</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">"The editing quality, pacing and sound design are top tier. Every video delivered hits our audience perfectly."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">MV</div>
+                            <div class="testimonial-meta">
+                                <span class="testimonial-name">Marcus Vance</span>
+                                <span class="testimonial-role">Content Creator (1.2M)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">"Fast turnaround, incredible motion graphics, and zero fluff. Aleksa is our go-to editor for high-stakes campaigns."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">SK</div>
+                            <div class="testimonial-meta">
+                                <span class="testimonial-name">Sarah Koenig</span>
+                                <span class="testimonial-role">Marketing Director</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- SCRIPTS -->
@@ -1231,8 +1384,8 @@
                 const buffer = new Uint32Array(imgData.data.buffer);
 
                 for (let i = 0; i < buffer.length; i++) {
-                    if (Math.random() < 0.05) {
-                        const shade = Math.floor(100 + Math.random() * 120);
+                    if (Math.random() < 0.015) {
+                        const shade = Math.floor(60 + Math.random() * 80);
                         buffer[i] = (255 << 24) | (shade << 16) | (shade << 8) | shade;
                     }
                 }
@@ -1322,16 +1475,29 @@
             new TabBorderCanvas(tab);
         });
 
-        // 4. FULLSCREEN SLIDING ENGINE
+        // 4. FULLSCREEN SLIDING ENGINE SA INTEGRISANIM HASH ROUTINGOM
         gsap.registerPlugin(ScrollTrigger);
 
         const panels = Array.from(document.querySelectorAll('.panel'));
         const navbar = document.getElementById('navbar');
+        const standaloneProjectsPage = document.getElementById('projects-standalone-page');
+
         const navTabs = {
             1: document.getElementById('nav-tab-1'),
             2: document.getElementById('nav-tab-2'),
             3: document.getElementById('nav-tab-3')
         };
+
+        const hashMap = {
+            '': 0,
+            '#': 0,
+            '#hero': 0,
+            '#whyme': 1,
+            '#mission': 2,
+            '#contact': 3
+        };
+
+        const indexToHash = ['#hero', '#whyme', '#mission', '#contact'];
 
         let currentIndex = 0;
         let isAnimating = false;
@@ -1345,14 +1511,29 @@
         function updateNavActiveState(index) {
             Object.values(navTabs).forEach(tab => tab.classList.remove('active'));
 
-            if (index > 0 && navTabs[index]) {
-                navTabs[index].classList.add('active');
+            if (index === 1) {
+                navTabs[1]?.classList.add('active');
+            } else if (index === 2) {
+                navTabs[2]?.classList.add('active');
+            } else if (index === 3) {
+                navTabs[3]?.classList.add('active');
             }
         }
 
-        function goToSlide(targetIndex) {
-            if (targetIndex < 0 || targetIndex >= panels.length || isAnimating || targetIndex === currentIndex) return;
-            
+        function goToSlide(targetIndex, updateHash = true) {
+            if (targetIndex < 0 || targetIndex >= panels.length || isAnimating) return;
+
+            // Zatvori standalone stranicu ako je bila otvorena
+            if (standaloneProjectsPage.classList.contains('active')) {
+                standaloneProjectsPage.classList.remove('active');
+            }
+
+            if (updateHash && window.location.hash !== indexToHash[targetIndex]) {
+                history.pushState(null, null, indexToHash[targetIndex]);
+            }
+
+            if (targetIndex === currentIndex && !isAnimating) return;
+
             isAnimating = true;
             updateNavActiveState(targetIndex);
 
@@ -1397,11 +1578,35 @@
             }
         }
 
+        function handleHashChange() {
+            const rawHash = window.location.hash;
+            const decodedHash = decodeURIComponent(rawHash);
+
+            if (decodedHash === '#projects&testimonials' || decodedHash === '#projects%26testimonials' || decodedHash === '#projects') {
+                // Otvori potpuno posebnu stranicu
+                standaloneProjectsPage.classList.add('active');
+                navbar.classList.add('scrolled');
+                updateNavActiveState(-1);
+            } else {
+                // Normalni slajder
+                standaloneProjectsPage.classList.remove('active');
+                const targetIdx = hashMap[decodedHash] !== undefined ? hashMap[decodedHash] : (hashMap[rawHash] !== undefined ? hashMap[rawHash] : 0);
+                goToSlide(targetIdx, false);
+            }
+        }
+
+        window.addEventListener('hashchange', handleHashChange);
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.location.hash) {
+                handleHashChange();
+            }
+        });
+
         let scrollAcc = 0;
         let scrollThreshold = 70;
 
         window.addEventListener('wheel', (e) => {
-            if (isAnimating || document.body.classList.contains('work-open')) return;
+            if (isAnimating || standaloneProjectsPage.classList.contains('active')) return;
 
             scrollAcc += e.deltaY;
 
@@ -1417,25 +1622,6 @@
                 scrollAcc = 0;
             }
         }, { passive: true });
-
-        // 5. WORK OVERLAY LOGIKA
-        const workOverlay = document.getElementById('work-overlay');
-
-        function openWorkOverlay() {
-            document.body.classList.add('work-open');
-            workOverlay.classList.add('active');
-        }
-
-        function closeWorkOverlay() {
-            document.body.classList.remove('work-open');
-            workOverlay.classList.remove('active');
-        }
-
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && workOverlay.classList.contains('active')) {
-                closeWorkOverlay();
-            }
-        });
     </script>
 </body>
 </html>
